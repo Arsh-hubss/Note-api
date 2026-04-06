@@ -47,10 +47,20 @@ const deleteNote =  async(req,res)=>{
     res.status(200).json({message : "Note has been deleted"});
 }
 
+//searches for notes by query and return it
+const queryNote = async(req,res)=>{
+	const { title } = req.query;
+	const notes = await Note.find();
+	const note = notes.find((note)=> note.title === title);
+
+	res.status(200).json(note);
+}
+
 module.exports = {
 	createNote,
 	getAllNotes,
 	getNote,
 	updateNote,
-	deleteNote
+	deleteNote,
+    queryNote
 }

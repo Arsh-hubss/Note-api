@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
+
 const  {
 	createNote,
 	getAllNotes,
 	getNote,
 	updateNote,
-	deleteNote
+	deleteNote,
+	queryNote
 } = require('../controllers/function')
 
 // //create note
@@ -23,7 +25,11 @@ const  {
 // //delete Notes
 // router.delete('/:id', deleteNote);
 
+//search for notes
+ router.get('/search', queryNote)
+
 router.route('/').post(createNote).get(getAllNotes);
 router.route('/:id').get(getNote).put(updateNote).delete(deleteNote);
+//router.route('/search').get(queryNote);
 
 module.exports = router; 
